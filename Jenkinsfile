@@ -17,13 +17,13 @@ pipeline {
 
         stage('Terraform Init') {
             steps {
-                sh 'terraform init'
+                bat 'terraform init'
             }
         }
 
         stage('Terraform Plan') {
             steps {
-                sh '''
+                bat '''
                   terraform plan \
                     -var "subscription_id=$ARM_SUBSCRIPTION_ID" \
                     -var "client_id=$ARM_CLIENT_ID" \
@@ -41,7 +41,7 @@ pipeline {
 
         stage('Terraform Apply') {
             steps {
-                sh '''
+                bat '''
                   terraform apply -auto-approve \
                     -var "subscription_id=$ARM_SUBSCRIPTION_ID" \
                     -var "client_id=$ARM_CLIENT_ID" \
